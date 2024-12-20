@@ -92,6 +92,11 @@ const RESBUFFS = {
     // 'Incredibly Healthy':6000,      // 3 all-res, 5 turns
 }
 
+const HOTBUFFS = {
+    'Flame-Retardant Trousers': ((35/100)*20)*(.275)*(1)*(VALUEOFSPIRIT),      // 1 hot res, 20 turns
+    'Stinky Hands': ((35/100)*10)*(.275)*(1)*(VALUEOFSPIRIT),           // 1 hot res, 10 turns               
+};
+
 const STENCHBUFFS = {
     'On Smellier Tides': ((35/100)*20)*(.275)*(1)*(VALUEOFSPIRIT),      // 1 stench res, 20 turns
     'Smelly Pants': ((35/100)*10)*(.275)*(1)*(VALUEOFSPIRIT),           // 1 stench res, 10 turns               
@@ -118,6 +123,7 @@ const ISLANDRESMAP = {
 const ISLANDSNARFBLATS = {
     "easter":588,
     "patrick":589,
+    "vets":590,
 };
 
 // Map the correct dread food/drink to the right element
