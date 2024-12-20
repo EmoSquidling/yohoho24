@@ -94,20 +94,35 @@ const RESBUFFS = {
 
 const HOTBUFFS = {
     'Flame-Retardant Trousers': ((35/100)*5)*(.275)*(1)*(VALUEOFSPIRIT),      // 1 hot res, 5 turns
-    'Stinky Hands': ((35/100)*10)*(.275)*(1)*(VALUEOFSPIRIT),           // 1 hot res, 10 turns               
+    'Stinky Hands': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT),           // 2 hot res, 20 turns
+    'Sleazy Hands': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT),           // 2 hot res, 20 turns
+};
+
+const COLDBUFFS = {
+    'Spooky Hands': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT),         // 2 cold res, 20 turns  
+    'Hot Hands': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT),           // 2 cold res, 20 turns
+    'Insulated Trousers': ((35/100)*5)*(.275)*(1)*(VALUEOFSPIRIT), // 1 cold res, 5 turns 
+};
+
+const SPOOKYBUFFS = {
+    'Stinky Hands': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT),         // 2 spooky res, 20 turns  
+    'Hot Hands': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT),           // 2 spooky res, 20 turns
+    'Spookypants': ((35/100)*5)*(.275)*(1)*(VALUEOFSPIRIT),     // 1 sleaze res, 5 turns 
 };
 
 const STENCHBUFFS = {
     'On Smellier Tides': ((35/100)*20)*(.275)*(1)*(VALUEOFSPIRIT),      // 1 stench res, 20 turns
-    'Smelly Pants': ((35/100)*5)*(.275)*(1)*(VALUEOFSPIRIT),           // 1 stench res, 10 turns               
+    'Smelly Pants': ((35/100)*5)*(.275)*(1)*(VALUEOFSPIRIT),           // 1 stench res, 5 turns 
+    'Cold Hands': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT),            // 2 sleaze res, 20 turns
+    'Sleazy Hands': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT),           // 2 hot res, 20 turns
 };
 
 const SLEAZEBUFFS = {
     'Boisterous Oysterous': ((35/100)*20)*(.275)*(1)*(VALUEOFSPIRIT),  // 1 sleaze res, 20 turns
     'Sleaze-Resistant Trousers': ((35/100)*10)*(.275)*(1)*(VALUEOFSPIRIT), // 1 sleaze res, 10 turns               
     'Slimed Stomach': ((35/100)*5)*(.275)*(1)*(VALUEOFSPIRIT), // 1 sleaze res, 5 turns               
-    'Cold Hands': ((35/100)*15)*(.275)*(2)*(VALUEOFSPIRIT), // 2 sleaze res, 15 turns               
-    'Spooky Hands': ((35/100)*15)*(.275)*(2)*(VALUEOFSPIRIT), // 2 sleaze res, 15 turns               
+    'Cold Hands': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT), // 2 sleaze res, 15 turns               
+    'Spooky Hands': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT), // 2 sleaze res, 15 turns               
 };
 
 // Map the islands to the res you should grab.
@@ -116,7 +131,7 @@ const ISLANDRESMAP = {
     "patrick":"sleaze",
     "thanks":"spooky",             // this is a guess
     "xmas":"cold",              // this is a guess
-    "vets":"hot",            // this is a guess
+    "vets":"hot",
 };
 
 // Map the island snarfblats 
@@ -265,7 +280,9 @@ function ahoyMaties() {
     // Set default choice advs appropriately
     if (getProperty("choiceAdventure1538") != 2) cliExecute("set choiceAdventure1538 = 2");
     if (getProperty("choiceAdventure1539") != 2) cliExecute("set choiceAdventure1539 = 2");
-    if (getProperty("choiceAdventure1539") != 2) cliExecute("set choiceAdventure1539 = 2");
+    if (getProperty("choiceAdventure1540") != 2) cliExecute("set choiceAdventure1540 = 2");
+    if (getProperty("choiceAdventure1541") != 2) cliExecute("set choiceAdventure1541 = 2");
+    if (getProperty("choiceAdventure1542") != 2) cliExecute("set choiceAdventure1542 = 2");
 }
 
 /**
