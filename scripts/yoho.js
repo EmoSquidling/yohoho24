@@ -383,8 +383,8 @@ function manageEquipment() {
     checkThenEquip("off-hand",toItem("deft pirate hook"));
     checkThenEquip("pants",toItem("waders"));
     checkThenEquip("acc1",toItem("mafia thumb ring"));
-    checkThenEquip("acc2",toItem("perfume-soaked bandana"));
-    checkThenEquip("acc3",toItem("head mirror"));
+    checkThenEquip("acc2",toItem("red shoe"));
+    checkThenEquip("acc3",toItem("duonoculars"));
 
     // Equip Jokester's gun if you have it and haven't fired.
     // if (getProperty("_firedJokestersGun") === "false") 
