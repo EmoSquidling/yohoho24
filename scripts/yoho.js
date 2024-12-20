@@ -114,9 +114,9 @@ const SLEAZEBUFFS = {
 const ISLANDRESMAP = {
     "easter":"stench",
     "patrick":"sleaze",
-    "thanks":"hot",             // this is a guess
+    "thanks":"spooky",             // this is a guess
     "xmas":"cold",              // this is a guess
-    "vets":"spooky",            // this is a guess
+    "vets":"hot",            // this is a guess
 };
 
 // Map the island snarfblats 
