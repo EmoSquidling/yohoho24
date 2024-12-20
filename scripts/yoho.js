@@ -406,7 +406,7 @@ function chompSomeDread(islandToRun, turnsToRun) {
 
     if (islandToRun=="easter")    var dreadEffects = ["Dreadful Chill", "Dreadful Sheen"];
     if (islandToRun=="patrick")   var dreadEffects = ["Dreadful Chill", "Dreadful Fear"];
-    if (island="vets") var dreadEffects = ["Dreadful Sheen", "Dreadful Smell"];
+    if (islandToRun=="vets")     var dreadEffects = ["Dreadful Sheen", "Dreadful Smell"];
     // if (island="easter") var dreadEffects = ["Dreadful Chill", "Dreadful Fear"];
     // if (island="easter") var dreadEffects = ["Dreadful Chill", "Dreadful Fear"];
 
