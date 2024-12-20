@@ -406,7 +406,7 @@ function chompSomeDread(islandToRun, turnsToRun) {
 
     if (islandToRun=="easter")    var dreadEffects = ["Dreadful Chill", "Dreadful Sheen"];
     if (islandToRun=="patrick")   var dreadEffects = ["Dreadful Chill", "Dreadful Fear"];
-    // if (island="easter") var dreadEffects = ["Dreadful Chill", "Dreadful Fear"];
+    if (island="vets") var dreadEffects = ["Dreadful Sheen", "Dreadful Smell"];
     // if (island="easter") var dreadEffects = ["Dreadful Chill", "Dreadful Fear"];
     // if (island="easter") var dreadEffects = ["Dreadful Chill", "Dreadful Fear"];
 
@@ -475,7 +475,7 @@ function main(cmd) {
         print(" - CONSUME ... trust this script to eat/drink for you, via soolar's CONSUME & some dread stuff.");
         print(" - setup=100 ... sets you up for 100 turns, but doesn't run them or eat. change 100 to any int.");
         print(" - turns=100 ... runs 100 turns. change 100 to any int");
-        print(" - island=patrick ... sets your island. Options are [patrick, easter]");
+        print(" - island=patrick ... sets your island. Options are [patrick, easter, vets]");
         print("");
         print("Please contribute to this script on GitHub if you want it to have more features. It sucks right now!");
 
