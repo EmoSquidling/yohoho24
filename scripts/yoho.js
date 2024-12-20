@@ -151,11 +151,11 @@ const CASTBUFFS = [
     toEffect('Smooth Movements'),
     toEffect("Singer's Faithful Ocelot"),
     toEffect("Empathy"),
-    toEffect("Blood Bond"),
+    // toEffect("Blood Bond"),
     toEffect("Leash of Linguini"),
-    toEffect("Blood Bubble"),
+    // toEffect("Blood Bubble"),
     toEffect("Springy Fusilli"),
-    toEffect("Scarysauce"),
+    // toEffect("Scarysauce"),
     toEffect("The Sonata of Sneakiness"),
     toEffect("Phat Leon's Phat Loot Lyric"),
 ];
@@ -216,7 +216,7 @@ function ahoyMaties() {
     }
 
     // Grab a fish hatchet from the floundry.
-    if (getProperty("_floundryItemCreated") === "false") {
+     if (getProperty("_floundryItemCreated") === "false") {
         cliExecute("acquire 1 fish hatchet");
     }
 
@@ -354,28 +354,28 @@ function manageEquipment() {
     checkThenEquip("hat",toItem("Crown of Thrones"));
     checkThenEquip("back",toItem("unwrapped knock-off retro superhero cape"));
     checkThenEquip("shirt",toItem("Jurassic Parka"));
-    checkThenEquip("weapon",toItem("fish hatchet"));
+    checkThenEquip("weapon",toItem("June Cleaver"));
     checkThenEquip("off-hand",toItem("deft pirate hook"));
-    checkThenEquip("pants",toItem("pantsgiving"));
+    checkThenEquip("pants",toItem("waders"));
     checkThenEquip("acc1",toItem("mafia thumb ring"));
-    checkThenEquip("acc2",toItem("Retrospecs"));
-    checkThenEquip("acc3",toItem("Pocket Square of Loathing"));
+    checkThenEquip("acc2",toItem("perfume-soaked bandana"));
+    checkThenEquip("acc3",toItem("head mirror"));
 
     // Equip Jokester's gun if you have it and haven't fired.
-    if (getProperty("_firedJokestersGun") === "false") 
-        checkThenEquip("weapon",toItem("The Jokester's Gun"));
+    // if (getProperty("_firedJokestersGun") === "false") 
+        // checkThenEquip("weapon",toItem("The Jokester's Gun"));
 
     // Equip docbag if you have it and haven't fired.
-    if (toInt(getProperty("_chestXRayUsed")) < 3 ) 
-        checkThenEquip("acc3",toItem("Lil' Doctor™ bag"));
+    // if (toInt(getProperty("_chestXRayUsed")) < 3 ) 
+       // checkThenEquip("acc3",toItem("Lil' Doctor™ bag"));
 
     // Ensure parka's equipped if YR is up.
     if (haveEffect(toEffect("Everything Looks Yellow")) < 1) 
         equip(toItem("Jurassic Parka"));
 
     // Ensure darts are equipped for bullseyes if they're up.
-    if (haveEffect(toEffect("Everything Looks Red")) < 1)
-        checkThenEquip("acc3",toItem("Everfull Dart Holster"));
+    // if (haveEffect(toEffect("Everything Looks Red")) < 1)
+        // checkThenEquip("acc3",toItem("Everfull Dart Holster"));
 
     // Ensure darts are equipped for bullseyes if they're up.
     // if (haveEffect(toEffect("Everything Looks Green")) < 1)
