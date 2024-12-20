@@ -337,6 +337,7 @@ function priceCheck(island) {
         buffList = buffList.concat(effectFilter(RESBUFFS));
         if (ISLANDRESMAP[island] === "stench") buffList = buffList.concat(effectFilter(STENCHBUFFS));
         if (ISLANDRESMAP[island] === "sleaze") buffList = buffList.concat(effectFilter(SLEAZEBUFFS));
+        if (ISLANDRESMAP[island] === "hot") buffList = buffList.concat(effectFilter(HOTBUFFS));
     }
 
     // Return the list for execution.
