@@ -90,7 +90,7 @@ const RESBUFFS = {
     'Oiled-Up': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT),               // 2 all res, 20 turns
     'Red Door Syndrome': ((35/100)*10)*(.275)*(2)*(VALUEOFSPIRIT),      // 2 all res, 10 turns
     // 'Incredibly Healthy':6000,      // 3 all-res, 5 turns
-}
+};
 
 const HOTBUFFS = {
     'Flame-Retardant Trousers': ((35/100)*5)*(.275)*(1)*(VALUEOFSPIRIT),      // 1 hot res, 5 turns
