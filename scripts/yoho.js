@@ -98,6 +98,7 @@ const HOTBUFFS = {
     'Flame-Retardant Trousers': ((35/100)*5)*(.275)*(1)*(VALUEOFSPIRIT),      // 1 hot res, 5 turns
     'Stinky Hands': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT),           // 2 hot res, 20 turns
     'Sleazy Hands': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT),           // 2 hot res, 20 turns
+    'Chondruling': ((35/100)*10)*(.275)*(2)*(VALUEOFSPIRIT),           // 2 hot res, 10 turns
 };
 
 const COLDBUFFS = {
