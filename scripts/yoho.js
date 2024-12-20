@@ -93,19 +93,19 @@ const RESBUFFS = {
 }
 
 const HOTBUFFS = {
-    'Flame-Retardant Trousers': ((35/100)*20)*(.275)*(1)*(VALUEOFSPIRIT),      // 1 hot res, 20 turns
+    'Flame-Retardant Trousers': ((35/100)*5)*(.275)*(1)*(VALUEOFSPIRIT),      // 1 hot res, 5 turns
     'Stinky Hands': ((35/100)*10)*(.275)*(1)*(VALUEOFSPIRIT),           // 1 hot res, 10 turns               
 };
 
 const STENCHBUFFS = {
     'On Smellier Tides': ((35/100)*20)*(.275)*(1)*(VALUEOFSPIRIT),      // 1 stench res, 20 turns
-    'Smelly Pants': ((35/100)*10)*(.275)*(1)*(VALUEOFSPIRIT),           // 1 stench res, 10 turns               
+    'Smelly Pants': ((35/100)*5)*(.275)*(1)*(VALUEOFSPIRIT),           // 1 stench res, 10 turns               
 };
 
 const SLEAZEBUFFS = {
     'Boisterous Oysterous': ((35/100)*20)*(.275)*(1)*(VALUEOFSPIRIT),  // 1 sleaze res, 20 turns
     'Sleaze-Resistant Trousers': ((35/100)*10)*(.275)*(1)*(VALUEOFSPIRIT), // 1 sleaze res, 10 turns               
-    'Slimed Stomach': ((35/100)*10)*(.275)*(1)*(VALUEOFSPIRIT), // 1 sleaze res, 5 turns               
+    'Slimed Stomach': ((35/100)*5)*(.275)*(1)*(VALUEOFSPIRIT), // 1 sleaze res, 5 turns               
     'Cold Hands': ((35/100)*15)*(.275)*(2)*(VALUEOFSPIRIT), // 2 sleaze res, 15 turns               
     'Spooky Hands': ((35/100)*15)*(.275)*(2)*(VALUEOFSPIRIT), // 2 sleaze res, 15 turns               
 };
@@ -264,6 +264,7 @@ function ahoyMaties() {
 
     // Set default choice advs appropriately
     if (getProperty("choiceAdventure1538") != 2) cliExecute("set choiceAdventure1538 = 2");
+    if (getProperty("choiceAdventure1539") != 2) cliExecute("set choiceAdventure1539 = 2");
     if (getProperty("choiceAdventure1539") != 2) cliExecute("set choiceAdventure1539 = 2");
 }
 
