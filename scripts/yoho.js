@@ -84,6 +84,7 @@ const NCBUFFS = {
     'Fresh Scent': ((1)/100.0)*11*(VALUEOFSPIRIT*(11-2)),                       // 5 nc; 11 turns
     'Predjudicetidigitation': ((2)/100.0)*10*(VALUEOFSPIRIT*(11-2)),                       // 10 nc; 10 turns
     'Ultra-Soft Steps':((1)/100.0)*5*(VALUEOFSPIRIT*(11-2)),                    // 5 nc; 5 turns
+    'Snow Shoes':((1)/100.0)*30*(VALUEOFSPIRIT*(11-2)),                    // 5 nc; 30 turns
     'Resined': 2000,                                               // leaves, included bc leaf balm exists
 };
 
