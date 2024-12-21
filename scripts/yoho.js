@@ -88,7 +88,7 @@ const NCBUFFS = {
 };
 
 const RESBUFFS = {
-    'Covered in the Rainbow': ((35/100)*30)*(.275)*(2)*(VALUEOFSPIRIT), // 2 all res, 80 turns
+    'Covered in the Rainbow': ((35/100)*80)*(.275)*(2)*(VALUEOFSPIRIT), // 2 all res, 80 turns
     'Minor Invulnerability': ((35/100)*30)*(.275)*(3)*(VALUEOFSPIRIT),  // 3 all-res, 30 turns
     'Autumnically Balmy':((35/100)*30)*(.275)*(2)*(VALUEOFSPIRIT),      // 2 all-res, 30 turns
     'Oiled-Up': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT),               // 2 all res, 20 turns
@@ -119,14 +119,17 @@ const HOTBUFFS = {
 };
 
 const COLDBUFFS = {
-    'Hot Hands': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT), // 2 hot res, 20 turns               
-    'Spooky Hands': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT), // 2 hot res, 20 turns               
-    'Insulated Trousers': ((35/100)*10)*(.275)*(1)*(VALUEOFSPIRIT), // 1 hot res, 10 turns               
-    'Shells of the Damned': ((35/100)*20)*(.275)*(1)*(VALUEOFSPIRIT), // 1 hot res, 20 turns  
+    'Hot Hands': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT), // 2 cold res, 20 turns 
+    "Hot in Herre': ((35/100)*30)*(.275)*(5)*(VALUEOFSPIRIT), // 5 cold res, 30 turns
+    'Spooky Hands': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT), // 2 cold res, 20 turns
+    'Insulated Trousers': ((35/100)*10)*(.275)*(1)*(VALUEOFSPIRIT), // 1 cold res, 10 turns  
+    'Burning Hands': ((35/100)*10)*(.275)*(3)*(VALUEOFSPIRIT), // 3 cold res, 10 turns               
+    'Shells of the Damned': ((35/100)*20)*(.275)*(1)*(VALUEOFSPIRIT), // 1 cold res, 20 turns  
 };
 
 const SPOOKYBUFFS = {
     'Hot Hands': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT), // 2 spooky res, 20 turns               
+    "Hot in Herre': ((35/100)*30)*(.275)*(5)*(VALUEOFSPIRIT), // 5 spooky res, 30 turns
     'Stinky Hands': ((35/100)*15)*(.275)*(2)*(VALUEOFSPIRIT), // 2 spooky res, 20 turns  
     'Spookypants': ((35/100)*5)*(.275)*(1)*(VALUEOFSPIRIT), // 1 spooky res, 10 turns
     'Worst Willy': ((35/100)*20)*(.275)*(1)*(VALUEOFSPIRIT), // 1 spooky res, 20 turns
