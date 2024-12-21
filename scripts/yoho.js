@@ -84,8 +84,6 @@ const NCBUFFS = {
     'Fresh Scent': ((1)/100.0)*11*(VALUEOFSPIRIT*(11-2)),                       // 5 nc; 11 turns
     'Predjudicetidigitation': ((2)/100.0)*10*(VALUEOFSPIRIT*(11-2)),                       // 10 nc; 10 turns
     'Ultra-Soft Steps':((1)/100.0)*5*(VALUEOFSPIRIT*(11-2)),                    // 5 nc; 5 turns
-    'Heart Of Green':((1)/100.0)*10*(VALUEOFSPIRIT*(11-2)),                    // 5 nc; 10 turns
-    'Snow Shoes':((1)/100.0)*30*(VALUEOFSPIRIT*(11-2)),                    // 5 nc; 30 turns
     'Resined': 2000,                                               // leaves, included bc leaf balm exists
 };
 
@@ -115,8 +113,7 @@ const HOTBUFFS = {
     'Stinky Hands': ((35/100)*15)*(.275)*(2)*(VALUEOFSPIRIT), // 2 hot res, 15 turns               
     'Sleazy Hands': ((35/100)*15)*(.275)*(2)*(VALUEOFSPIRIT), // 2 hot res, 15 turns               
     'Flame-Retardant Trousers': ((35/100)*10)*(.275)*(1)*(VALUEOFSPIRIT), // 1 hot res, 10 turns               
-    'Too Cool for (Fish) School': ((35/100)*20)*(.275)*(1)*(VALUEOFSPIRIT), // 1 hot res, 10 turns
-    'Chondruling': ((35/100)*10)*(.275)*(2)*(VALUEOFSPIRIT),           // 2 hot res, 10 turns
+    'Too Cool for (Fish) School': ((35/100)*20)*(.275)*(1)*(VALUEOFSPIRIT), // 1 hot res, 10 turns  
 };
 
 const COLDBUFFS = {
@@ -175,11 +172,11 @@ const CASTBUFFS = [
     toEffect('Smooth Movements'),
     toEffect("Singer's Faithful Ocelot"),
     toEffect("Empathy"),
-    // toEffect("Blood Bond"),
+    toEffect("Blood Bond"),
     toEffect("Leash of Linguini"),
-    // toEffect("Blood Bubble"),
+    toEffect("Blood Bubble"),
     toEffect("Springy Fusilli"),
-    // toEffect("Scarysauce"),
+    toEffect("Scarysauce"),
     toEffect("The Sonata of Sneakiness"),
     toEffect("Phat Leon's Phat Loot Lyric"),
 ];
@@ -242,9 +239,9 @@ const RAWCOMBAT = [
 function ahoyMaties() {
     // Use horsery for dark horse, because -com potions are gone and a marginal 
     //   accessory is +5 res vs -1 combat
-   // if (getProperty("horseryAvailable") === "true") {
-       // if (getProperty("_horsery") != "dark horse") cliExecute("horsery dark horse");
-    
+    if (getProperty("horseryAvailable") === "true") {
+        if (getProperty("_horsery") != "dark horse") cliExecute("horsery dark horse");
+    }
 
     // Grab a fish hatchet from the floundry.
     if (getProperty("_floundryItemCreated") === "false") {
@@ -264,7 +261,7 @@ function ahoyMaties() {
     }
 
     // For simplicity, just use peace turkey.
-    useFamiliar(toFamiliar("Disgeist"));
+    useFamiliar(toFamiliar("Peace Turkey"));
 
     // Get the barrel buff, if you have it.
     if (getProperty("barrelShrineUnlocked") === true) {
@@ -292,7 +289,7 @@ function ahoyMaties() {
     if (getProperty("choiceAdventure1540") != 2) cliExecute("set choiceAdventure1540 = 2");
     if (getProperty("choiceAdventure1541") != 2) cliExecute("set choiceAdventure1541 = 2");
 
-};
+}
 
 /**
  * Execute sources for buffs up to a given # of turns.
@@ -370,8 +367,6 @@ function priceCheck(island) {
         if (ISLANDRESMAP[island] === "stench") buffList = buffList.concat(effectFilter(STENCHBUFFS));
         if (ISLANDRESMAP[island] === "sleaze") buffList = buffList.concat(effectFilter(SLEAZEBUFFS));
         if (ISLANDRESMAP[island] === "hot") buffList = buffList.concat(effectFilter(HOTBUFFS));
-        if (ISLANDRESMAP[island] === "cold") buffList = buffList.concat(effectFilter(COLDBUFFS));
-        if (ISLANDRESMAP[island] === "spooky") buffList = buffList.concat(effectFilter(SPOOKYBUFFS));
     }
 
     // Return the list for execution.
@@ -398,18 +393,18 @@ function manageEquipment(island) {
     checkThenEquip("shirt",toItem("Jurassic Parka"));
     checkThenEquip("weapon",toItem("fish hatchet"));
     checkThenEquip("off-hand",toItem("deft pirate hook"));
-    checkThenEquip("pants",toItem("waders"));
+    checkThenEquip("pants",toItem("pantsgiving"));
     checkThenEquip("acc1",toItem("mafia thumb ring"));
-    checkThenEquip("acc2",toItem("duonoculars"));
-    checkThenEquip("acc3",toItem("perfume-soaked bandana"));
+    checkThenEquip("acc2",toItem("Retrospecs"));
+    checkThenEquip("acc3",toItem("lucky gold ring"));
     
-    /// if (numericModifier(toElement(ISLANDRESMAP[island])+" resistance") < 40) {
-        /// checkThenEquip("acc3",toItem("Pocket Square of Loathing"));
+    if (numericModifier(toElement(ISLANDRESMAP[island])+" resistance") < 40) {
+        checkThenEquip("acc3",toItem("Pocket Square of Loathing"));
     }
 
     // Equip your Peace Turkey, if it isn't equipped
-    if (myFamiliar() != toFamiliar("Disgeist")) {
-        useFamiliar(toFamiliar("Disgeist"));
+    if (myFamiliar() != toFamiliar("Peace Turkey")) {
+        useFamiliar(toFamiliar("Peace Turkey"));
     }
 
     // Equip Jokester's gun if you have it and haven't fired.
@@ -417,8 +412,8 @@ function manageEquipment(island) {
         checkThenEquip("weapon",toItem("The Jokester's Gun"));
 
     // Equip docbag if you have it and haven't fired.
-   //  if (toInt(getProperty("_chestXRayUsed")) < 3 ) 
-        // checkThenEquip("acc3",toItem("Lil' Doctor™ bag"));
+    if (toInt(getProperty("_chestXRayUsed")) < 3 ) 
+        checkThenEquip("acc3",toItem("Lil' Doctor™ bag"));
 
     // Ensure parka's set to the right mode if YR is up; otherwise, -com
     if (haveEffect(toEffect("Everything Looks Yellow")) === 0) { 
@@ -430,13 +425,13 @@ function manageEquipment(island) {
     }
 
     // Ensure darts are equipped for bullseyes if they're up.
-    // if (haveEffect(toEffect("Everything Looks Red")) < 1)
-        // checkThenEquip("acc3",toItem("Everfull Dart Holster"));
+    if (haveEffect(toEffect("Everything Looks Red")) < 1)
+        checkThenEquip("acc3",toItem("Everfull Dart Holster"));
 
     // Ensure shoes are equipped for freeruns if they're up.
-    // if (haveEffect(toEffect("Everything Looks Green")) < 1)
-        // checkThenEquip("acc3",toItem("Spring Shoes"));
-};
+    if (haveEffect(toEffect("Everything Looks Green")) < 1)
+        checkThenEquip("acc3",toItem("Spring Shoes"));
+}
 
 /**
  * Eat/drink the "right" dread food/drink to get the massive +res boosts.
