@@ -200,7 +200,7 @@ const CASTBUFFS = [
 const RAWCOMBAT = [
     "pickpocket",
     "if match spirit of",
-    "skill entangling noodles",
+    "skill curse of weaksauce",
     "endif",
     "if hasskill 7449",          // if eagle equipped, & you can pledge... pledge
     "skill 7449",
@@ -408,7 +408,7 @@ function manageEquipment(island) {
     checkThenEquip("hat",toItem("Crown of Thrones"));
     checkThenEquip("back",toItem("unwrapped knock-off retro superhero cape"));
     checkThenEquip("shirt",toItem("Jurassic Parka"));
-    checkThenEquip("weapon",toItem("fish hatchet"));
+    checkThenEquip("weapon",toItem("June Cleaver"));
     checkThenEquip("off-hand",toItem("deft pirate hook"));
     checkThenEquip("pants",toItem("waders"));
     checkThenEquip("acc1",toItem("mafia thumb ring"));
