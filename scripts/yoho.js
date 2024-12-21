@@ -172,11 +172,11 @@ const CASTBUFFS = [
     toEffect('Smooth Movements'),
     toEffect("Singer's Faithful Ocelot"),
     toEffect("Empathy"),
-    toEffect("Blood Bond"),
+    // toEffect("Blood Bond"),
     toEffect("Leash of Linguini"),
-    toEffect("Blood Bubble"),
+    // toEffect("Blood Bubble"),
     toEffect("Springy Fusilli"),
-    toEffect("Scarysauce"),
+    // toEffect("Scarysauce"),
     toEffect("The Sonata of Sneakiness"),
     toEffect("Phat Leon's Phat Loot Lyric"),
 ];
@@ -261,7 +261,7 @@ function ahoyMaties() {
     }
 
     // For simplicity, just use peace turkey.
-    useFamiliar(toFamiliar("Peace Turkey"));
+    useFamiliar(toFamiliar("Disgeist"));
 
     // Get the barrel buff, if you have it.
     if (getProperty("barrelShrineUnlocked") === true) {
@@ -367,6 +367,7 @@ function priceCheck(island) {
         if (ISLANDRESMAP[island] === "stench") buffList = buffList.concat(effectFilter(STENCHBUFFS));
         if (ISLANDRESMAP[island] === "sleaze") buffList = buffList.concat(effectFilter(SLEAZEBUFFS));
         if (ISLANDRESMAP[island] === "hot") buffList = buffList.concat(effectFilter(HOTBUFFS));
+        if (ISLANDRESMAP[island] === "cold") buffList = buffList.concat(effectFilter(COLDBUFFS));
     }
 
     // Return the list for execution.
@@ -393,9 +394,9 @@ function manageEquipment(island) {
     checkThenEquip("shirt",toItem("Jurassic Parka"));
     checkThenEquip("weapon",toItem("fish hatchet"));
     checkThenEquip("off-hand",toItem("deft pirate hook"));
-    checkThenEquip("pants",toItem("pantsgiving"));
+    checkThenEquip("pants",toItem("waders"));
     checkThenEquip("acc1",toItem("mafia thumb ring"));
-    checkThenEquip("acc2",toItem("Retrospecs"));
+    checkThenEquip("acc2",toItem("duonoculars"));
     checkThenEquip("acc3",toItem("lucky gold ring"));
     
     if (numericModifier(toElement(ISLANDRESMAP[island])+" resistance") < 40) {
@@ -403,8 +404,8 @@ function manageEquipment(island) {
     }
 
     // Equip your Peace Turkey, if it isn't equipped
-    if (myFamiliar() != toFamiliar("Peace Turkey")) {
-        useFamiliar(toFamiliar("Peace Turkey"));
+    if (myFamiliar() != toFamiliar("Disgeist")) {
+        useFamiliar(toFamiliar("Disgeist"));
     }
 
     // Equip Jokester's gun if you have it and haven't fired.
@@ -412,8 +413,8 @@ function manageEquipment(island) {
         checkThenEquip("weapon",toItem("The Jokester's Gun"));
 
     // Equip docbag if you have it and haven't fired.
-    if (toInt(getProperty("_chestXRayUsed")) < 3 ) 
-        checkThenEquip("acc3",toItem("Lil' Doctor™ bag"));
+    //if (toInt(getProperty("_chestXRayUsed")) < 3 ) 
+        //checkThenEquip("acc3",toItem("Lil' Doctor™ bag"));
 
     // Ensure parka's set to the right mode if YR is up; otherwise, -com
     if (haveEffect(toEffect("Everything Looks Yellow")) === 0) { 
@@ -425,12 +426,12 @@ function manageEquipment(island) {
     }
 
     // Ensure darts are equipped for bullseyes if they're up.
-    if (haveEffect(toEffect("Everything Looks Red")) < 1)
-        checkThenEquip("acc3",toItem("Everfull Dart Holster"));
+    // if (haveEffect(toEffect("Everything Looks Red")) < 1)
+        // checkThenEquip("acc3",toItem("Everfull Dart Holster"));
 
     // Ensure shoes are equipped for freeruns if they're up.
-    if (haveEffect(toEffect("Everything Looks Green")) < 1)
-        checkThenEquip("acc3",toItem("Spring Shoes"));
+    // if (haveEffect(toEffect("Everything Looks Green")) < 1)
+        // checkThenEquip("acc3",toItem("Spring Shoes"));
 }
 
 /**
