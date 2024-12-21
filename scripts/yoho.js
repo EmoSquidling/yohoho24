@@ -288,10 +288,9 @@ function ahoyMaties() {
 
     // Set default choice advs appropriately
     if (getProperty("choiceAdventure1538") != 2) cliExecute("set choiceAdventure1538 = 2");
-    if (getProperty("choiceAdventure1539") != 2) cliExecute("set choiceAdventure1539 = 2");
+    if (getProperty("choiceAdventure1539") != 2) cliExecute("set choiceAdventure1539 = 2");    if (getProperty("choiceAdventure1539") != 2) cliExecute("set choiceAdventure1539 = 2");
     if (getProperty("choiceAdventure1540") != 2) cliExecute("set choiceAdventure1540 = 2");
     if (getProperty("choiceAdventure1541") != 2) cliExecute("set choiceAdventure1541 = 2");
-    if (getProperty("choiceAdventure1542") != 2) cliExecute("set choiceAdventure1542 = 2");
 
 }
 
