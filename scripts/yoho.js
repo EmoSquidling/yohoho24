@@ -239,7 +239,7 @@ const RAWCOMBAT = [
 /**
  * Startup tasks when script begins. It's like breakfast! Except, for a script.
  */
-function ahoyMaties() 
+function ahoyMaties() {
     // Use horsery for dark horse, because -com potions are gone and a marginal 
     //   accessory is +5 res vs -1 combat
    // if (getProperty("horseryAvailable") === "true") {
@@ -292,6 +292,7 @@ function ahoyMaties()
     if (getProperty("choiceAdventure1540") != 2) cliExecute("set choiceAdventure1540 = 2");
     if (getProperty("choiceAdventure1541") != 2) cliExecute("set choiceAdventure1541 = 2");
 
+}
 }
 
 /**
