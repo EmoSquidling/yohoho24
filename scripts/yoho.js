@@ -98,29 +98,38 @@ const RESBUFFS = {
 
 const STENCHBUFFS = {
     'On Smellier Tides': ((35/100)*20)*(.275)*(1)*(VALUEOFSPIRIT),      // 1 stench res, 20 turns
-    'Smelly Pants': ((35/100)*10)*(.275)*(1)*(VALUEOFSPIRIT),           // 1 stench res, 10 turns               
+    'Smelly Pants': ((35/100)*10)*(.275)*(1)*(VALUEOFSPIRIT),           // 1 stench res, 10 turns  
+    'Cold Hands': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT), // 2 stench res, 20 turns 
+    'Sleazy Hands': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT), // 2 stench res, 20 turns  
 };
 
 const SLEAZEBUFFS = {
     'Boisterous Oysterous': ((35/100)*20)*(.275)*(1)*(VALUEOFSPIRIT),  // 1 sleaze res, 20 turns
     'Sleaze-Resistant Trousers': ((35/100)*10)*(.275)*(1)*(VALUEOFSPIRIT), // 1 sleaze res, 10 turns               
     'Slimed Stomach': ((35/100)*10)*(.275)*(1)*(VALUEOFSPIRIT), // 1 sleaze res, 5 turns               
-    'Cold Hands': ((35/100)*15)*(.275)*(2)*(VALUEOFSPIRIT), // 2 sleaze res, 15 turns               
-    'Spooky Hands': ((35/100)*15)*(.275)*(2)*(VALUEOFSPIRIT), // 2 sleaze res, 15 turns               
+    'Cold Hands': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT), // 2 sleaze res, 20 turns               
+    'Spooky Hands': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT), // 2 sleaze res, 20 turns               
 };
 
 const HOTBUFFS = {
-    'Stinky Hands': ((35/100)*15)*(.275)*(2)*(VALUEOFSPIRIT), // 2 hot res, 15 turns               
-    'Sleazy Hands': ((35/100)*15)*(.275)*(2)*(VALUEOFSPIRIT), // 2 hot res, 15 turns               
+    'Stinky Hands': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT), // 2 hot res, 20 turns               
+    'Sleazy Hands': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT), // 2 hot res, 20 turns               
     'Flame-Retardant Trousers': ((35/100)*10)*(.275)*(1)*(VALUEOFSPIRIT), // 1 hot res, 10 turns               
     'Too Cool for (Fish) School': ((35/100)*20)*(.275)*(1)*(VALUEOFSPIRIT), // 1 hot res, 10 turns  
 };
 
 const COLDBUFFS = {
-    'Hot Hands': ((35/100)*15)*(.275)*(2)*(VALUEOFSPIRIT), // 2 hot res, 15 turns               
-    'Spooky Hands': ((35/100)*15)*(.275)*(2)*(VALUEOFSPIRIT), // 2 hot res, 15 turns               
+    'Hot Hands': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT), // 2 hot res, 20 turns               
+    'Spooky Hands': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT), // 2 hot res, 20 turns               
     'Insulated Trousers': ((35/100)*10)*(.275)*(1)*(VALUEOFSPIRIT), // 1 hot res, 10 turns               
-    'Shells of the Damned': ((35/100)*20)*(.275)*(1)*(VALUEOFSPIRIT), // 1 hot res, 10 turns  
+    'Shells of the Damned': ((35/100)*20)*(.275)*(1)*(VALUEOFSPIRIT), // 1 hot res, 20 turns  
+};
+
+const SPOOKYBUFFS = {
+    'Hot Hands': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT), // 2 spooky res, 20 turns               
+    'Stinky Hands': ((35/100)*15)*(.275)*(2)*(VALUEOFSPIRIT), // 2 spooky res, 20 turns  
+    'Spookypants': ((35/100)*5)*(.275)*(1)*(VALUEOFSPIRIT), // 1 spooky res, 10 turns
+    'Worst Willy': ((35/100)*20)*(.275)*(1)*(VALUEOFSPIRIT), // 1 spooky res, 20 turns
 };
 
 // Map the islands to the res you should grab.
@@ -239,8 +248,8 @@ const RAWCOMBAT = [
 function ahoyMaties() {
     // Use horsery for dark horse, because -com potions are gone and a marginal 
     //   accessory is +5 res vs -1 combat
-    if (getProperty("horseryAvailable") === "true") {
-        if (getProperty("_horsery") != "dark horse") cliExecute("horsery dark horse");
+    // if (getProperty("horseryAvailable") === "true") {
+        // if (getProperty("_horsery") != "dark horse") cliExecute("horsery dark horse");
     }
 
     // Grab a fish hatchet from the floundry.
@@ -368,6 +377,7 @@ function priceCheck(island) {
         if (ISLANDRESMAP[island] === "sleaze") buffList = buffList.concat(effectFilter(SLEAZEBUFFS));
         if (ISLANDRESMAP[island] === "hot") buffList = buffList.concat(effectFilter(HOTBUFFS));
         if (ISLANDRESMAP[island] === "cold") buffList = buffList.concat(effectFilter(COLDBUFFS));
+        if (ISLANDRESMAP[island] === "spooky") buffList = buffList.concat(effectFilter(SPOOKYBUFFS));
     }
 
     // Return the list for execution.
@@ -403,7 +413,7 @@ function manageEquipment(island) {
         //checkThenEquip("acc3",toItem("Pocket Square of Loathing"));
     }
 
-    // Equip your Peace Turkey, if it isn't equipped
+    // Equip your Disgeist, if it isn't equipped
     if (myFamiliar() != toFamiliar("Disgeist")) {
         useFamiliar(toFamiliar("Disgeist"));
     }
