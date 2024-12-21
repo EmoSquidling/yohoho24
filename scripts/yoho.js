@@ -248,8 +248,8 @@ const RAWCOMBAT = [
 function ahoyMaties() {
     // Use horsery for dark horse, because -com potions are gone and a marginal 
     //   accessory is +5 res vs -1 combat
-    // if (getProperty("horseryAvailable") === "true") {
-        // if (getProperty("_horsery") != "dark horse") cliExecute("horsery dark horse");
+    if (getProperty("horseryAvailable") === "true") {
+        if (getProperty("_horsery") != "dark horse") cliExecute("horsery dark horse");
     }
 
     // Grab a fish hatchet from the floundry.
