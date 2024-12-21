@@ -243,8 +243,7 @@ const RAWCOMBAT = [
     "endif",
     "skill 4034",
     "attack",
-    "skill silent treatment",
-    "skill weapon of the pastalord",
+    "skill saucegeyser",
     "attack",
     "repeat",
 ];
