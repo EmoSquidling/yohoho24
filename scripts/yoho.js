@@ -399,8 +399,8 @@ function manageEquipment(island) {
     checkThenEquip("acc2",toItem("red shoe"));
     checkThenEquip("acc3",toItem("duonoculars"));
     
-    if (numericModifier(toElement(ISLANDRESMAP[island])+" resistance") < 40) {
-        checkThenEquip("acc3",toItem("Pocket Square of Loathing"));
+    //if (numericModifier(toElement(ISLANDRESMAP[island])+" resistance") < 40) {
+        //checkThenEquip("acc3",toItem("Pocket Square of Loathing"));
     }
 
     // Equip your Peace Turkey, if it isn't equipped
