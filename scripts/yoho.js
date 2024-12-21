@@ -199,6 +199,7 @@ const CASTBUFFS = [
 // This is a simple CCS.
 const RAWCOMBAT = [
     "pickpocket",
+    "skill 4034",
     "if match spirit of",
     "skill entangling noodles",
     "endif",
