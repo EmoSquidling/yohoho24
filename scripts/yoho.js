@@ -292,7 +292,7 @@ function ahoyMaties() {
     if (getProperty("choiceAdventure1540") != 2) cliExecute("set choiceAdventure1540 = 2");
     if (getProperty("choiceAdventure1541") != 2) cliExecute("set choiceAdventure1541 = 2");
 
-}
+
 
 /**
  * Execute sources for buffs up to a given # of turns.
