@@ -199,7 +199,6 @@ const CASTBUFFS = [
 // This is a simple CCS.
 const RAWCOMBAT = [
     "pickpocket",
-    "skill 4034",
     "if match spirit of",
     "skill entangling noodles",
     "endif",
@@ -242,6 +241,7 @@ const RAWCOMBAT = [
     "if hascombatitem shadow brick",
     "use shadow brick",
     "endif",
+    "skill 4034",
     "attack",
     "skill silent treatment",
     "skill weapon of the pastalord",
