@@ -432,7 +432,6 @@ function manageEquipment(island) {
     // Ensure shoes are equipped for freeruns if they're up.
     // if (haveEffect(toEffect("Everything Looks Green")) < 1)
         // checkThenEquip("acc3",toItem("Spring Shoes"));
-}
 
 /**
  * Eat/drink the "right" dread food/drink to get the massive +res boosts.
