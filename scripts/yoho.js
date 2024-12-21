@@ -396,8 +396,8 @@ function manageEquipment(island) {
     checkThenEquip("off-hand",toItem("deft pirate hook"));
     checkThenEquip("pants",toItem("waders"));
     checkThenEquip("acc1",toItem("mafia thumb ring"));
-    checkThenEquip("acc2",toItem("duonoculars"));
-    checkThenEquip("acc3",toItem("lucky gold ring"));
+    checkThenEquip("acc2",toItem("red shoe"));
+    checkThenEquip("acc3",toItem("duonoculars"));
     
     if (numericModifier(toElement(ISLANDRESMAP[island])+" resistance") < 40) {
         checkThenEquip("acc3",toItem("Pocket Square of Loathing"));
