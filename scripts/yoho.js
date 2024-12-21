@@ -7,9 +7,11 @@ const {
     haveEffect,
     cliExecute,
     urlEncode,
+    xpath,
     retrieveItem,
     toEffect,
     setAutoAttack,
+    getCampground,
     getAutoAttack,
     toItem,
     mallPrice,
@@ -22,6 +24,7 @@ const {
     getProperty,
     visitUrl,
     adv1,
+    myTurncount,
     itemAmount,
     useFamiliar,
     toFamiliar,
@@ -29,6 +32,7 @@ const {
     myInebriety,
     inebrietyLimit,
     fullnessLimit,
+    myFamiliar,
     eat,
     drink,
     setProperty,
@@ -92,49 +96,43 @@ const RESBUFFS = {
     'Oiled-Up': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT),               // 2 all res, 20 turns
     'Red Door Syndrome': ((35/100)*10)*(.275)*(2)*(VALUEOFSPIRIT),      // 2 all res, 10 turns
     // 'Incredibly Healthy':6000,      // 3 all-res, 5 turns
-};
-
-const HOTBUFFS = {
-    'Flame-Retardant Trousers': ((35/100)*5)*(.275)*(1)*(VALUEOFSPIRIT),      // 1 hot res, 5 turns
-    'Stinky Hands': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT),           // 2 hot res, 20 turns
-    'Sleazy Hands': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT),           // 2 hot res, 20 turns
-    'Chondruling': ((35/100)*10)*(.275)*(2)*(VALUEOFSPIRIT),           // 2 hot res, 10 turns
-};
-
-const COLDBUFFS = {
-    'Spooky Hands': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT),         // 2 cold res, 20 turns  
-    'Hot Hands': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT),           // 2 cold res, 20 turns
-    'Insulated Trousers': ((35/100)*5)*(.275)*(1)*(VALUEOFSPIRIT), // 1 cold res, 5 turns 
-};
-
-const SPOOKYBUFFS = {
-    'Stinky Hands': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT),         // 2 spooky res, 20 turns  
-    'Hot Hands': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT),           // 2 spooky res, 20 turns
-    'Spookypants': ((35/100)*5)*(.275)*(1)*(VALUEOFSPIRIT),     // 1 sleaze res, 5 turns 
-};
+}
 
 const STENCHBUFFS = {
     'On Smellier Tides': ((35/100)*20)*(.275)*(1)*(VALUEOFSPIRIT),      // 1 stench res, 20 turns
-    'Smelly Pants': ((35/100)*5)*(.275)*(1)*(VALUEOFSPIRIT),           // 1 stench res, 5 turns 
-    'Cold Hands': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT),            // 2 sleaze res, 20 turns
-    'Sleazy Hands': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT),           // 2 hot res, 20 turns
+    'Smelly Pants': ((35/100)*10)*(.275)*(1)*(VALUEOFSPIRIT),           // 1 stench res, 10 turns               
 };
 
 const SLEAZEBUFFS = {
     'Boisterous Oysterous': ((35/100)*20)*(.275)*(1)*(VALUEOFSPIRIT),  // 1 sleaze res, 20 turns
     'Sleaze-Resistant Trousers': ((35/100)*10)*(.275)*(1)*(VALUEOFSPIRIT), // 1 sleaze res, 10 turns               
-    'Slimed Stomach': ((35/100)*5)*(.275)*(1)*(VALUEOFSPIRIT), // 1 sleaze res, 5 turns               
-    'Cold Hands': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT), // 2 sleaze res, 15 turns               
-    'Spooky Hands': ((35/100)*20)*(.275)*(2)*(VALUEOFSPIRIT), // 2 sleaze res, 15 turns               
+    'Slimed Stomach': ((35/100)*10)*(.275)*(1)*(VALUEOFSPIRIT), // 1 sleaze res, 5 turns               
+    'Cold Hands': ((35/100)*15)*(.275)*(2)*(VALUEOFSPIRIT), // 2 sleaze res, 15 turns               
+    'Spooky Hands': ((35/100)*15)*(.275)*(2)*(VALUEOFSPIRIT), // 2 sleaze res, 15 turns               
+};
+
+const HOTBUFFS = {
+    'Stinky Hands': ((35/100)*15)*(.275)*(2)*(VALUEOFSPIRIT), // 2 hot res, 15 turns               
+    'Sleazy Hands': ((35/100)*15)*(.275)*(2)*(VALUEOFSPIRIT), // 2 hot res, 15 turns               
+    'Flame-Retardant Trousers': ((35/100)*10)*(.275)*(1)*(VALUEOFSPIRIT), // 1 hot res, 10 turns               
+    'Too Cool for (Fish) School': ((35/100)*20)*(.275)*(1)*(VALUEOFSPIRIT), // 1 hot res, 10 turns
+    'Chondruling': ((35/100)*10)*(.275)*(2)*(VALUEOFSPIRIT),           // 2 hot res, 10 turns
+};
+
+const COLDBUFFS = {
+    'Hot Hands': ((35/100)*15)*(.275)*(2)*(VALUEOFSPIRIT), // 2 hot res, 15 turns               
+    'Spooky Hands': ((35/100)*15)*(.275)*(2)*(VALUEOFSPIRIT), // 2 hot res, 15 turns               
+    'Insulated Trousers': ((35/100)*10)*(.275)*(1)*(VALUEOFSPIRIT), // 1 hot res, 10 turns               
+    'Shells of the Damned': ((35/100)*20)*(.275)*(1)*(VALUEOFSPIRIT), // 1 hot res, 10 turns  
 };
 
 // Map the islands to the res you should grab.
 const ISLANDRESMAP = {
     "easter":"stench",
     "patrick":"sleaze",
-    "thanks":"spooky",             // this is a guess
-    "xmas":"cold",              // this is a guess
-    "vets":"hot",
+    "vets":"hot",            
+    "thanks":"cold",    
+    // "xmas":"spooky",        
 };
 
 // Map the island snarfblats 
@@ -142,6 +140,8 @@ const ISLANDSNARFBLATS = {
     "easter":588,
     "patrick":589,
     "vets":590,
+    "thanks":591,
+    // "xmas":592,
 };
 
 // Map the correct dread food/drink to the right element
@@ -186,70 +186,76 @@ const CASTBUFFS = [
 
 // This is a simple CCS.
 const RAWCOMBAT = [
-    "pickpocket;",
-    "if match spirit of easter;",
-    "call freerun;",
-    "endif;",
-    "while !times 1; attack; endwhile;", 
-    "sub freerun;",
-    "while !times 1; attack; endwhile;", 
-    "if hasskill Bowl a Curveball;",
-    "skill bowl a curveball;",
-    "endif;",
-    "if hasskill spring away;",
-    "skill spring away;",
-    "endif;",
-    "endsub;",
-    "if hasskill 7423;",        // parka YR
-    "skill 7423;",    
-    "endif;",
-    "if hasskill 7521;",        // dart freekill
-    "skill 7521;",
-    "endif;",
-    "if hasskill 7265;",        // jokester
-    "skill 7265;",      
-    "endif;",
-    "if hasskill 0149;",        // shatterpunch
-    "skill 0149;",
-    "endif;",
-    "if hasskill 7307;",        // chest xray
-    "skill 7307;",
-    "endif;",
-    "if hasskill 163;",         // ginger mob hit
-    "skill 163;",
-    "endif;",
-    "if hasskill 7530;",        // swoop like a bat
-    "skill 7530;",
-    "endif;",
-    "if hascombatitem shadow brick;",
-    "use shadow brick;",
-    "endif;",
-    "attack;",
-    "skill saucegeyser;",
-    "skill saucegeyser;",
-    "skill saucegeyser;",
+    "pickpocket",
+    "if match spirit of",
+    "skill entangling noodles",
+    "endif",
+    "if hasskill 7449",          // if eagle equipped, & you can pledge... pledge
+    "skill 7449",
+    "endif",
+    "while !times 1; attack; endwhile", 
+    "if !hasskill entangling noodles",
+    "if hasskill Bowl a Curveball",
+    "skill bowl a curveball",
+    "endif",
+    "if hasskill spring away",
+    "skill spring away",
+    "endif",
+    "endif",
+    "if hasskill 7423",        // parka YR
+    "skill 7423",    
+    "endif",
+    "if hasskill 7521",        // dart freekill
+    "skill 7521",
+    "endif",
+    "if hasskill 7265",        // jokester
+    "skill 7265",      
+    "endif",
+    "if hasskill 0149",        // shatterpunch
+    "skill 0149",
+    "endif",
+    "if hasskill 7307",        // chest xray
+    "skill 7307",
+    "endif",
+    "if hasskill 163",         // ginger mob hit
+    "skill 163",
+    "endif",
+    "if hasskill 7530",        // swoop like a bat
+    "skill 7530",
+    "endif",
+    "if hasskill 7424",        // spikolodon spikes
+    "skill 7424",
+    "endif",
+    "if hascombatitem shadow brick",
+    "use shadow brick",
+    "endif",
+    "attack",
+    "skill silent treatment",
+    "skill weapon of the pastalord",
+    "attack",
+    "repeat",
 ];
 
 /**
- * Startup tasks when script begins.
+ * Startup tasks when script begins. It's like breakfast! Except, for a script.
  */
 function ahoyMaties() {
-    if (getProperty("horseryAvailable") === "true") {
-        // Marginally prefer pale horse because NC is easier to cap.
-        if (getProperty("_horsery") != "pale horse") cliExecute("horsery pale horse");
+    // Use horsery for dark horse, because -com potions are gone and a marginal 
+    //   accessory is +5 res vs -1 combat
+   // if (getProperty("horseryAvailable") === "true") {
+       // if (getProperty("_horsery") != "dark horse") cliExecute("horsery dark horse");
     }
 
     // Grab a fish hatchet from the floundry.
-     if (getProperty("_floundryItemCreated") === "false") {
+    if (getProperty("_floundryItemCreated") === "false") {
         cliExecute("acquire 1 fish hatchet");
     }
 
     // Grab a deft pirate hook.
     if (itemAmount(toItem("deft pirate hook")) === 0 && equippedAmount(toItem("deft pirate hook")) === 0) {
-        // TODO: This doesn't work! Probably need a visiturl. 
-        // if (toItem("TakerSpace letter of Marque") in getCampground()) {
-        //     cliExecute("acquire 1 deft pirate hook");
-        // }
+        if (toItem("TakerSpace letter of Marque") in getCampground()) {
+            cliExecute("acquire 1 deft pirate hook");
+        }
     }
 
     // Properly set up your retrocape.
@@ -258,7 +264,7 @@ function ahoyMaties() {
     }
 
     // For simplicity, just use peace turkey.
-    useFamiliar(toFamiliar("Peace Turkey"));
+    useFamiliar(toFamiliar("Disgeist"));
 
     // Get the barrel buff, if you have it.
     if (getProperty("barrelShrineUnlocked") === true) {
@@ -286,6 +292,7 @@ function ahoyMaties() {
     if (getProperty("choiceAdventure1540") != 2) cliExecute("set choiceAdventure1540 = 2");
     if (getProperty("choiceAdventure1541") != 2) cliExecute("set choiceAdventure1541 = 2");
     if (getProperty("choiceAdventure1542") != 2) cliExecute("set choiceAdventure1542 = 2");
+
 }
 
 /**
@@ -302,12 +309,18 @@ function executeBuffs(turns, buffs) {
 
             // Iterate until you have the desired # of turns of the buff
             for (let i = 0; haveEffect(buff) < turns; i++ ) {
+                // Variable for buff turns prior to executing the CLIEX.
+                var buffTurns = haveEffect(buff);
                 
                 // Use the dumb cli execute strategy
                 cliExecute("try; "+ buff.default);
 
-                // If it goes WAY too hard, shut the thing off and alert user.
-                if (i > 100) {
+                if (buffTurns === haveEffect(buff)) {
+                    abort("Failed to buff up with "+buff+". Weird! Maybe comment it out or do it yourself?");
+                }
+
+                // If this gets stuck in a infinite loop, shut the thing off and alert user.
+                if (i > 100000) {
                     abort("Attempts to gain "+buff+" failed. A lot!!! Comment it out and try again?");
                 }
             }
@@ -358,6 +371,8 @@ function priceCheck(island) {
         if (ISLANDRESMAP[island] === "stench") buffList = buffList.concat(effectFilter(STENCHBUFFS));
         if (ISLANDRESMAP[island] === "sleaze") buffList = buffList.concat(effectFilter(SLEAZEBUFFS));
         if (ISLANDRESMAP[island] === "hot") buffList = buffList.concat(effectFilter(HOTBUFFS));
+        if (ISLANDRESMAP[island] === "cold") buffList = buffList.concat(effectFilter(COLDBUFFS));
+        if (ISLANDRESMAP[island] === "spooky") buffList = buffList.concat(effectFilter(SPOOKYBUFFS));
     }
 
     // Return the list for execution.
@@ -377,37 +392,51 @@ function checkThenEquip(slot,item) {
 /**
  * Function used to ensure you are outfitted appropriately.
  */
-function manageEquipment() {
+function manageEquipment(island) {
     // Start with the base outfit you are using most of the day.
     checkThenEquip("hat",toItem("Crown of Thrones"));
     checkThenEquip("back",toItem("unwrapped knock-off retro superhero cape"));
     checkThenEquip("shirt",toItem("Jurassic Parka"));
     checkThenEquip("weapon",toItem("fish hatchet"));
     checkThenEquip("off-hand",toItem("deft pirate hook"));
-    checkThenEquip("pants",toItem("lava-proof pants"));
+    checkThenEquip("pants",toItem("waders"));
     checkThenEquip("acc1",toItem("mafia thumb ring"));
-    checkThenEquip("acc2",toItem("red shoe"));
-    checkThenEquip("acc3",toItem("duonoculars"));
+    checkThenEquip("acc2",toItem("duonoculars"));
+    checkThenEquip("acc3",toItem("perfume-soaked bandana"));
+    
+    /// if (numericModifier(toElement(ISLANDRESMAP[island])+" resistance") < 40) {
+        /// checkThenEquip("acc3",toItem("Pocket Square of Loathing"));
+    }
+
+    // Equip your Peace Turkey, if it isn't equipped
+    if (myFamiliar() != toFamiliar("Disgeist")) {
+        useFamiliar(toFamiliar("Disgeist"));
+    }
 
     // Equip Jokester's gun if you have it and haven't fired.
-    // if (getProperty("_firedJokestersGun") === "false") 
-        // checkThenEquip("weapon",toItem("The Jokester's Gun"));
+    if (getProperty("_firedJokestersGun") === "false") 
+        checkThenEquip("weapon",toItem("The Jokester's Gun"));
 
     // Equip docbag if you have it and haven't fired.
-    // if (toInt(getProperty("_chestXRayUsed")) < 3 ) 
-       // checkThenEquip("acc3",toItem("Lil' Doctor™ bag"));
+   //  if (toInt(getProperty("_chestXRayUsed")) < 3 ) 
+        // checkThenEquip("acc3",toItem("Lil' Doctor™ bag"));
 
-    // Ensure parka's equipped if YR is up.
-    if (haveEffect(toEffect("Everything Looks Yellow")) < 1) 
-        equip(toItem("Jurassic Parka"));
+    // Ensure parka's set to the right mode if YR is up; otherwise, -com
+    if (haveEffect(toEffect("Everything Looks Yellow")) === 0) { 
+        if (getProperty("parkaMode") != "dilophosaur") cliExecute("parka dilophosaur");
+    } else if (getProperty("_spikolodonSpikeUses") < 5) {
+        if (getProperty("parkaMode") != "spikolodon") cliExecute("parka spikolodon");
+    } else {
+        if (getProperty("parkaMode") != "pterodactyl") cliExecute("parka pterodactyl");
+    }
 
     // Ensure darts are equipped for bullseyes if they're up.
     // if (haveEffect(toEffect("Everything Looks Red")) < 1)
         // checkThenEquip("acc3",toItem("Everfull Dart Holster"));
 
-    // Ensure darts are equipped for bullseyes if they're up.
+    // Ensure shoes are equipped for freeruns if they're up.
     // if (haveEffect(toEffect("Everything Looks Green")) < 1)
-    //     checkThenEquip("acc3",toItem("Spring Shoes"));
+        // checkThenEquip("acc3",toItem("Spring Shoes"));
 }
 
 /**
@@ -428,9 +457,9 @@ function chompSomeDread(islandToRun, turnsToRun) {
 
     if (islandToRun=="easter")    var dreadEffects = ["Dreadful Chill", "Dreadful Sheen"];
     if (islandToRun=="patrick")   var dreadEffects = ["Dreadful Chill", "Dreadful Fear"];
-    if (islandToRun=="vets")     var dreadEffects = ["Dreadful Sheen", "Dreadful Smell"];
-    // if (island="easter") var dreadEffects = ["Dreadful Chill", "Dreadful Fear"];
-    // if (island="easter") var dreadEffects = ["Dreadful Chill", "Dreadful Fear"];
+    if (islandToRun=="vets")      var dreadEffects = ["Dreadful Sheen", "Dreadful Smell"];
+    if (islandToRun=="thanks")    var dreadEffects = ["Dreadful Heat", "Dreadful Fear"];
+    if (islandToRun=="xmas")      var dreadEffects = ["Dreadful Heat", "Dreadful Smell"];
 
     // Iterate through the island's two feelings, capping the first then the second.
     dreadEffects.forEach((dreadFeeling) => {
@@ -453,26 +482,84 @@ function chompSomeDread(islandToRun, turnsToRun) {
     });
 }
 
+/**
+ * This function is basically taken from loathers/libram. Specifically,
+ *   getMacroID and the setAutoattack functions. Thanks to Neil & Bean.
+ */
 function setupCombat() {
-    // I can't get this working and I also have literally never gotten libram to work so RIP to the user.
-    var id = 470210; 
-    var autoAttackID = 99000000 + id;
-    var name = "yohoho24";
-    var builtCCS = RAWCOMBAT.join("");
+    // Set default macro information.
+    var macroName = "yohoho24";
+    var builtCCS = RAWCOMBAT.join(";");
 
-    // if (getAutoAttack() != id) {
-        visitUrl('account_combatmacros.php?action=new');
-        visitUrl('account_combatmacros.php?macroid='+id+'&name='+name+'&macrotext='+urlEncode(builtCCS)+'&action=save',true, true,);
-        visitUrl('account.php?am=1&action=autoattack&value='+autoAttackID+'&ajax=1');
+    // Use an xpath query to look at all macro names.
+    const query = `//select[@name="macroid"]/option[text()="${macroName}"]/@value`;
+    const macroWebpage = visitUrl("account_combatmacros.php");
+    var macroMatches = xpath(macroWebpage, query);
+
+    // Check if the new macro exists
+    if (macroMatches.length === 0) {
+        visitUrl("account_combatmacros.php?action=new");
+        const newMacroText = visitUrl(`account_combatmacros.php?macroid=0&name=${macroName}&macrotext=abort&action=save`);
+        macroMatches = xpath(newMacroText, query);
+    }
+
+    // The autoAttack ID is different from the macro ID; need to add 99 mil!
+    var macroID = parseInt(macroMatches[0],10);
+    var autoAttackID = 99000000 + macroID;
+
+    visitUrl('account_combatmacros.php?action=new');
+    visitUrl('account_combatmacros.php?macroid='+macroID+'&name='+macroName+'&macrotext='+urlEncode(builtCCS)+'&action=save',true, true,);
+    visitUrl('account.php?am=1&action=autoattack&value='+autoAttackID+'&ajax=1');
 }
 
-function runTurns(turns, islandToRun) {
-    var islandSnarf = ISLANDSNARFBLATS[islandToRun];
+/**
+ * This function sets up your eagle in the outskirts, if necessary
+ * @param {boolean} doNotAdv   if true, don't adv; if false, adv is OK
+ */
+function setupEagle(doNotAdv) {
+    if (doNotAdv) return;
+    if (haveEffect(toEffect(2822)) != 0) return;
+    if (!canAdventure(toLocation("Outskirts of Cobb's Knob"))) return;
+    
+    // Swap over to your eagle, setup your combat
+    useFamiliar(toFamiliar("Patriotic Eagle"));
     setupCombat();
 
-    for (let i=1; i < turns + 1; i++) {
-        manageEquipment();
-        adv1(toLocation(islandSnarf),1);
+    // Use your eagle in the outskirts for your pledge
+    if (myAdventures() > 0) adv1(toLocation("Outskirts of Cobb's Knob"),1);
+
+}
+
+/**
+ * Function that runs a specified number of turns at a specified island.
+ * @param {number} turns      number of turns to burn
+ * @param {island} islandToRun    island; one of "vets, patrick, easter"
+ */
+
+function runTurns(turns, islandToRun) {
+    const islandSnarf = ISLANDSNARFBLATS[islandToRun];
+    const islandName = toLocation(islandSnarf).toString();
+    setupCombat();
+    var turnsToPlay = turns;
+
+    if (turns > myAdventures()) turnsToPlay = myAdventures();
+    
+    const targetTurns = myTurncount() + turnsToPlay;
+
+    for (let i=1; i < turnsToPlay + 1; i++) {
+        // Break out if you've used the turns 
+        if (myTurncount() >= targetTurns) break;
+
+        var preAdvTurns = myTurncount();
+        
+        // manageEquipment(islandToRun);
+        if (myAdventures() > 0) adv1(toLocation(islandSnarf),1);
+
+        if (myAdventures() > 0 && preAdvTurns === myTurncount()) i--; 
+        
+        // Sending the fallbot to your current zone. This is probably not "totally" right,
+        //   but it increases your take of random items from the zone, which seems fine.
+        if (itemAmount(toItem("autumn-aton")) > 0)  cliExecute("autumnaton send "+islandName);
     }
 }
 
@@ -534,12 +621,18 @@ function main(cmd) {
         }
         
         ahoyMaties();
-        manageEquipment();
+        manageEquipment(islandToRun);
+        setupEagle(doNotAdventure);
 
         // Only chomp if they are adventuring; only CONSUME if they need to.
         if (cmd.includes("CONSUME") && !doNotAdventure) {
             chompSomeDread(islandToRun, turnsToRun);
-            if (myAdventures < turnsToRun - 50) cliExecute("CONSUME ALL NOMEAT VALUE 10000");
+
+            // Value per turn is sort of annoying! Best approximation seems to be 
+            //   about 15% of NCs and 2 spirits per fight for the other 85%, so...
+            //     0.85 * 2 + 0.15 * 11 = 3.35
+            const valueForCONSUME = 3.35 * VALUEOFSPIRIT; 
+            if (myAdventures() < turnsToRun) cliExecute("CONSUME ALL NOMEAT VALUE "+valueForCONSUME);
         }
     
         var buffsToSnag = priceCheck(islandToRun);
