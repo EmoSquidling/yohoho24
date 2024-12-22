@@ -199,20 +199,15 @@ const CASTBUFFS = [
 // This is a simple CCS.
 const RAWCOMBAT = [
     "pickpocket",
-    "if match spirit of",
-    "skill curse of weaksauce",
-    "endif",
     "if hasskill 7449",          // if eagle equipped, & you can pledge... pledge
     "skill 7449",
     "endif",
     "while !times 1; attack; endwhile", 
-    "if !hasskill entangling noodles",
     "if hasskill Bowl a Curveball",
     "skill bowl a curveball",
     "endif",
     "if hasskill spring away",
     "skill spring away",
-    "endif",
     "endif",
     "if hasskill 7423",        // parka YR
     "skill 7423",    
@@ -241,8 +236,9 @@ const RAWCOMBAT = [
     "if hascombatitem shadow brick",
     "use shadow brick",
     "endif",
-    "skill 4034",
+    "skill curse of weaksauce",
     "attack",
+    "skill silent treatment",
     "skill saucegeyser",
     "attack",
     "repeat",
@@ -550,19 +546,18 @@ function runTurns(turns, islandToRun) {
     const islandSnarf = ISLANDSNARFBLATS[islandToRun];
     const islandName = toLocation(islandSnarf).toString();
     setupCombat();
-    var turnsToPlay = turns;
-
+       var turnsToPlay = turns;
     if (turns > myAdventures()) turnsToPlay = myAdventures();
     
     const targetTurns = myTurncount() + turnsToPlay;
 
-    for (let i=1; i < turnsToPlay + 1; i++) {
+      for (let i=1; i < turnsToPlay + 1; i++) {
         // Break out if you've used the turns 
         if (myTurncount() >= targetTurns) break;
 
-        var preAdvTurns = myTurncount();
-        
-        // manageEquipment(islandToRun);
+            var turnsToPlay = turns;
+    if (turns > myAdventures()) turnsToPlay = myAdventures();
+    
         if (myAdventures() > 0) adv1(toLocation(islandSnarf),1);
 
         if (myAdventures() > 0 && preAdvTurns === myTurncount()) i--; 
