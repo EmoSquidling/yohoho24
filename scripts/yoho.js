@@ -408,7 +408,7 @@ function manageEquipment(island) {
     checkThenEquip("hat",toItem("Crown of Thrones"));
     checkThenEquip("back",toItem("unwrapped knock-off retro superhero cape"));
     checkThenEquip("shirt",toItem("Jurassic Parka"));
-    checkThenEquip("weapon",toItem("June Cleaver"));
+    checkThenEquip("weapon",toItem("fish hatchet"));
     checkThenEquip("off-hand",toItem("deft pirate hook"));
     checkThenEquip("pants",toItem("waders"));
     checkThenEquip("acc1",toItem("mafia thumb ring"));
