@@ -546,18 +546,19 @@ function runTurns(turns, islandToRun) {
     const islandSnarf = ISLANDSNARFBLATS[islandToRun];
     const islandName = toLocation(islandSnarf).toString();
     setupCombat();
-       var turnsToPlay = turns;
+    var turnsToPlay = turns;
+
     if (turns > myAdventures()) turnsToPlay = myAdventures();
     
     const targetTurns = myTurncount() + turnsToPlay;
 
-      for (let i=1; i < turnsToPlay + 1; i++) {
+    for (let i=1; i < turnsToPlay + 1; i++) {
         // Break out if you've used the turns 
         if (myTurncount() >= targetTurns) break;
 
-            var turnsToPlay = turns;
-    if (turns > myAdventures()) turnsToPlay = myAdventures();
-    
+        var preAdvTurns = myTurncount();
+        
+        manageEquipment(islandToRun);
         if (myAdventures() > 0) adv1(toLocation(islandSnarf),1);
 
         if (myAdventures() > 0 && preAdvTurns === myTurncount()) i--; 
