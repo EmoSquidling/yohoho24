@@ -153,7 +153,7 @@ const ISLANDSNARFBLATS = {
     "patrick":589,
     "vets":590,
     "thanks":591,
-    // "xmas":592,
+    "xmas":592,
 };
 
 // Map the correct dread food/drink to the right element
