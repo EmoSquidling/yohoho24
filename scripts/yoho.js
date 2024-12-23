@@ -144,7 +144,7 @@ const ISLANDRESMAP = {
     "patrick":"sleaze",
     "vets":"hot",            
     "thanks":"cold",    
-    // "xmas":"spooky",        
+    "xmas":"spooky",        
 };
 
 // Map the island snarfblats 
