@@ -406,7 +406,7 @@ function manageEquipment(island) {
     checkThenEquip("shirt",toItem("Jurassic Parka"));
     checkThenEquip("weapon",toItem("fish hatchet"));
     checkThenEquip("off-hand",toItem("deft pirate hook"));
-    checkThenEquip("pants",toItem("brown pirate pants"));
+    checkThenEquip("pants",toItem("lava-proof pants"));
     checkThenEquip("acc1",toItem("mafia thumb ring"));
     checkThenEquip("acc2",toItem("mime army infiltration glove"));
     checkThenEquip("acc3",toItem("duonoculars"));
